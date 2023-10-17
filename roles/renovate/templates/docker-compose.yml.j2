@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  renovate:
+    image: {{renovate_image}}
+    container_name: "{{ renovate_container_name }}"
+    restart: "no"

@@ -1,0 +1,30 @@
+module.exports = {
+//...other config
+
+//the regex manager is enabled by default but if you limit the mangers don'T forgot to add him
+enabledManagers:["regex"],
+packageRules: [
+    //.....
+],
+
+regexManagers: [
+    {
+      customType: "regex",
+      //File match describe in which kind of files should be searched for dependencies
+      //here this are all vars.yaml or vars.yml in any directory
+      //if you confgiure you dependencies in different location change this regex
+      fileMatch: ["^.+vars\\.ya?ml$"],
+
+     //important to mention is that renovate fetch the information about the dependency from named regex groups
+      //depName -> "name of the dependency renovate/renovate in this case
+      //currentValue -> the version that is set at the moment 32.194.0
+      //optional currentDigest -> the image hash if you want this to be updated too. sha256:f0eb7e7e23274666bfeb7b672da9f5a81f89f14d843f977fa6453ce228ee194a
+      //a named grouped is marked with (?<GROUP_NAME>REGEX_FOR_THE_GROUP) 
+      matchStrings: [
+        "\\s*\\w+:\\s(?<depName>\\w+\\/\\w+):(?<currentValue>(\\w+\\.?)+)@?(?<currentDigest>(\\w+:?)+)?\\s*"
+      ],
+    //we have to specify what kind of dependency we are looking for in this case docker
+      datasourceTemplate: "docker"
+    }
+  ]
+}

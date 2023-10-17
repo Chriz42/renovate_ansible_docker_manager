@@ -1,0 +1,4 @@
+## Images
+#
+renovate_image: renovate/renovate:32.194.0@sha256:f0eb7e7e23274666bfeb7b672da9f5a81f89f14d843f977fa6453ce228ee194a
+some_other_service_image: bla
